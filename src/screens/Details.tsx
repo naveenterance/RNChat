@@ -24,14 +24,14 @@ const DetailsTabs = () => {
 
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'teal',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          paddingBottom: 10,
+          height: '8%',
         },
 
         tabBarLabel: ({focused, color}) => (
-          <Text style={{color: focused ? 'tomato' : color}}>{route.name}</Text>
+          <Text style={{color: focused ? 'teal' : color}}>{route.name}</Text>
         ),
       })}>
       <Tab.Screen
