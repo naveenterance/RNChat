@@ -22,7 +22,7 @@ const DetailsTabs = () => {
             iconName = focused ? 'chatbubble-sharp' : 'chatbubble-outline';
           }
 
-          return <Icon name={iconName} size={size} color={color} />;
+          return <Icon name={iconName!} size={size} color={color} />;
         },
         tabBarActiveTintColor: 'teal',
         tabBarInactiveTintColor: 'gray',

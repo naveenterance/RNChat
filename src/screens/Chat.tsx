@@ -1,79 +1,82 @@
 import * as React from 'react';
-import {View, Text, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {View, Text, Image, TextInput} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FlashList} from '@shopify/flash-list';
 
 const ChatScreen = () => {
   const chatData = [
     {
       id: '1',
-      name: 'John Doe',
+      isSent: true,
       message: 'What does this do?',
       time: '10:00pm',
-      avatar: 'https://picsum.photos/200/300',
     },
     {
       id: '2',
-      name: 'Jane Smith',
+      isSent: true,
       message: 'This is a sample message.',
       time: '10:05pm',
-      avatar: 'https://picsum.photos/200/300',
     },
     {
       id: '3',
-      name: 'Alice Johnson',
+      isSent: false,
       message: 'Let’s chat!',
       time: '10:10pm',
-      avatar: 'https://picsum.photos/200/300',
     },
   ];
 
   return (
-    <View style={{flex: 1, paddingTop: 10}}>
-      <Text
-        style={{
-          padding: 10,
-          fontSize: 20,
-          fontWeight: 'bold',
-          textAlign: 'center',
-        }}>
-        Chat
-      </Text>
+    <View style={{flex: 1}}>
+      <View
+        style={{flexDirection: 'row', padding: 10, backgroundColor: '#fff9'}}>
+        <FontAwesome5 size={40} name={'user-circle'} />
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            marginVertical: 'auto',
+            padding: 10,
+          }}>
+          User234
+        </Text>
+      </View>
 
       <FlashList
         data={chatData}
         renderItem={({item}) => (
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 10,
-              paddingVertical: 5,
-              borderBottomWidth: 1,
-              borderBottomColor: '#ddd',
+              width: '100%',
+              alignItems: item.isSent ? 'flex-end' : 'flex-start',
+              padding: 10,
             }}>
-            <View style={{flexDirection: 'row'}}>
-              <Image
-                source={{uri: item.avatar}}
-                style={{width: 50, height: 50, borderRadius: 25}}
-              />
-              <View style={{marginLeft: 10, justifyContent: 'center'}}>
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
-                  {item.name}
-                </Text>
-                <Text style={{fontSize: 12, color: '#555'}}>
-                  {item.message}
-                </Text>
-              </View>
-            </View>
-
-            <View style={{justifyContent: 'center'}}>
-              <Text style={{opacity: 0.5, fontSize: 12}}>{item.time}</Text>
+            <View
+              style={{
+                backgroundColor: item.isSent ? 'gray' : 'white',
+                padding: 10,
+                borderRadius: 4,
+                maxWidth: '70%',
+              }}>
+              <Text style={{fontSize: 15}}>{item.message}</Text>
             </View>
           </View>
         )}
         estimatedItemSize={80}
       />
+      <View
+        style={{
+          paddingVertical: 20,
+          paddingHorizontal: 10,
+          flexDirection: 'row',
+          backgroundColor: '#fff9',
+        }}>
+        <TextInput style={{width: '80%'}} placeholder="Type a  message" />
+
+        <View style={{marginVertical: 'auto', marginLeft: 20}}>
+          <Icon size={30} name={'send'} color={'gray'} />
+        </View>
+      </View>
     </View>
   );
 };
