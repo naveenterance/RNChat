@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsScreen from './Settings';
-import ChatScreen from './Chat';
+import ChatListScreen from './ChatList';
 
 // Create a Bottom Tab Navigator
 const Tab = createBottomTabNavigator();
@@ -11,14 +11,14 @@ const Tab = createBottomTabNavigator();
 const DetailsTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Chat"
+      initialRouteName="ChatList"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
           if (route.name === 'Settings') {
             iconName = focused ? 'settings' : 'settings-outline';
-          } else if (route.name === 'Chat') {
+          } else if (route.name === 'ChatList') {
             iconName = focused ? 'chatbubble-sharp' : 'chatbubble-outline';
           }
 
@@ -35,8 +35,8 @@ const DetailsTabs = () => {
         ),
       })}>
       <Tab.Screen
-        name="Chat"
-        component={ChatScreen}
+        name="ChatList"
+        component={ChatListScreen}
         options={{headerShown: false}}
       />
       <Tab.Screen
