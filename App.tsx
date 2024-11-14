@@ -1,25 +1,25 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/Home';
-import DetailsTabs from './src/screens/Details';
-import ChatScreen from './src/screens/Chat';
 
-// Create the stack navigator
+import HomeTabs from './src/screens/Home';
+import ChatScreen from './src/screens/Chat';
+import LoginScreen from './src/screens/Login';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+          name="Login"
+          component={LoginScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Details"
-          component={DetailsTabs}
+          name="Home"
+          component={HomeTabs}
           options={{headerShown: false}}
         />
         <Stack.Screen

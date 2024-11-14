@@ -1,18 +1,51 @@
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
-import {useNavigation, NavigationProp} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Text} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import SettingsScreen from './Settings';
+import ChatListScreen from './ChatList';
 
-const HomeScreen = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+// Create a Bottom Tab Navigator
+const Tab = createBottomTabNavigator();
+
+const HomeTabs = () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+    <Tab.Navigator
+      initialRouteName="ChatList"
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Settings') {
+            iconName = focused ? 'settings' : 'settings-outline';
+          } else if (route.name === 'ChatList') {
+            iconName = focused ? 'chatbubble-sharp' : 'chatbubble-outline';
+          }
+
+          return <Icon name={iconName!} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#5B8E1E',
+        tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          height: '8%',
+        },
+
+        tabBarLabel: ({focused, color}) => (
+          <Text style={{color: focused ? '#5B8E1E' : color}}>{route.name}</Text>
+        ),
+      })}>
+      <Tab.Screen
+        name="ChatList"
+        component={ChatListScreen}
+        options={{headerShown: false}}
       />
-    </View>
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{headerShown: false}}
+      />
+    </Tab.Navigator>
   );
 };
 
-export default HomeScreen;
+export default HomeTabs;
