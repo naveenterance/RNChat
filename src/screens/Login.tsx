@@ -9,35 +9,16 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation<NavigationProp<any>>();
-
-  // Function to handle login button press
-  const handleLogin = () => {
-    // Simple validation
-    if (!email.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please enter both email and password');
-      return;
-    }
-
-    // Replace this with your actual login logic
-    if (email === 'user@example.com' && password === 'password123') {
-      Alert.alert('Success', 'Login successful!');
-      // You can navigate to another screen after login like this:
-      // navigation.navigate('HomeScreen');
-    } else {
-      Alert.alert('Error', 'Invalid email or password');
-    }
-  };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>VNChat</Text>
 
-      {/* Email Input */}
       <View style={styles.inputContainer}>
         <Icon name="mail" size={20} color="gray" />
         <TextInput
@@ -50,7 +31,6 @@ const LoginScreen = () => {
         />
       </View>
 
-      {/* Password Input */}
       <View style={styles.inputContainer}>
         <Icon name="lock" size={20} color="gray" />
         <TextInput
@@ -63,11 +43,13 @@ const LoginScreen = () => {
         />
       </View>
 
-      {/* Login Button */}
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>Login</Text>
+        <View style={{flexDirection: 'row', gap: 10}}>
+          <Text style={styles.buttonText}>Login</Text>
+          <MaterialCommunityIcons size={30} name="login" color="white" />
+        </View>
       </Pressable>
     </View>
   );
@@ -78,7 +60,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    marginTop: 200,
     alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#f5f5f5',
@@ -87,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 30,
+    opacity: 0.3,
   },
   inputContainer: {
     flexDirection: 'row',

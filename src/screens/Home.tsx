@@ -31,7 +31,9 @@ const HomeTabs = () => {
         },
 
         tabBarLabel: ({focused, color}) => (
-          <Text style={{color: focused ? '#5B8E1E' : color}}>{route.name}</Text>
+          <Text style={{color: focused ? '#5B8E1E' : color, fontWeight: '600'}}>
+            {route.name}
+          </Text>
         ),
       })}>
       <Tab.Screen

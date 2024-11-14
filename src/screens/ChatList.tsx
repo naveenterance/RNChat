@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FlashList} from '@shopify/flash-list';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 
@@ -33,7 +33,7 @@ const ChatListScreen = () => {
 
   return (
     <View style={{flex: 1, paddingTop: 10}}>
-      <Text
+      {/* <Text
         style={{
           padding: 10,
           fontSize: 20,
@@ -41,7 +41,51 @@ const ChatListScreen = () => {
           textAlign: 'center',
         }}>
         Chat
-      </Text>
+      </Text> */}
+      <View
+        style={{
+          width: '100%',
+          flexDirection: 'row',
+          paddingHorizontal: 20,
+          alignItems: 'center',
+          paddingTop: 10,
+          paddingBottom: 30,
+        }}>
+        <View style={{position: 'relative', width: 40, height: 40}}>
+          {/* User Icon */}
+          <FontAwesome5
+            size={40}
+            name="user-circle"
+            color="gray"
+            style={{width: 40, height: 40, borderRadius: 20}}
+          />
+
+          {/* Green Status Dot */}
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              width: 14,
+              height: 14,
+              backgroundColor: 'green',
+              borderRadius: 6,
+              borderWidth: 2,
+              borderColor: 'white',
+            }}
+          />
+        </View>
+
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '500',
+            marginLeft: 10,
+            alignSelf: 'center',
+          }}>
+          Timmy
+        </Text>
+      </View>
 
       <FlashList
         data={chatData}
@@ -52,9 +96,7 @@ const ChatListScreen = () => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderBottomWidth: 1,
-                borderBottomColor: '#ddd',
+                paddingVertical: 10,
               }}>
               <View style={{flexDirection: 'row'}}>
                 <Image

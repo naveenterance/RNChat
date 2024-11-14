@@ -36,9 +36,9 @@ const ChatScreen = () => {
       <View
         style={{flexDirection: 'row', padding: 10, backgroundColor: '#fff9'}}>
         <View style={{marginVertical: 'auto', paddingRight: 10}}>
-          <Ionicons size={25} name={'chevron-back-sharp'} />
+          <Ionicons size={25} name={'chevron-back-sharp'} color={'gray'} />
         </View>
-        <FontAwesome5 size={40} name={'user-circle'} />
+        <FontAwesome5 size={40} name={'user-circle'} color={'gray'} />
         <Text
           style={{
             fontSize: 16,
@@ -54,6 +54,7 @@ const ChatScreen = () => {
         inverted
         ref={flatListRef}
         data={messages}
+        showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
           <View
             style={{
@@ -88,20 +89,20 @@ const ChatScreen = () => {
       />
       <View
         style={{
-          paddingVertical: 20,
+          paddingVertical: 8,
           paddingHorizontal: 10,
           flexDirection: 'row',
-          // backgroundColor: '#fff9',
+          backgroundColor: '#fff9',
         }}>
         <TextInput
           style={{
             width: '80%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: '#fff',
-            borderRadius: 10,
-            paddingHorizontal: 10,
-            paddingVertical: 20,
+            // flexDirection: 'row',
+            // alignItems: 'center',
+            // backgroundColor: '#fff',
+            // borderRadius: 10,
+            // paddingHorizontal: 10,
+            // paddingVertical: 20,
           }}
           placeholder="Type a message"
           value={inputText}
@@ -112,11 +113,12 @@ const ChatScreen = () => {
           onPress={addMessage}
           style={{
             marginVertical: 'auto',
-            marginLeft: 20,
+            marginLeft: 10,
+            marginRight: 5,
             padding: 12,
-            borderWidth: 2,
-            borderRadius: 50,
-            borderColor: '#5B8E1E',
+            // borderWidth: 4,
+            // borderRadius: 50,
+            // borderColor: '#5B8E1E',
           }}>
           <Icon size={30} name={'send'} color={'#5B8E1E'} />
         </Pressable>
