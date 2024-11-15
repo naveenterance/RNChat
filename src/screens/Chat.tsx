@@ -1,36 +1,48 @@
 import * as React from 'react';
-import {View, Text, Image, TextInput, Pressable} from 'react-native';
+import {View, Text, TextInput, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FlashList} from '@shopify/flash-list';
-import {useRef, useState} from 'react';
-import {chatData} from '../data/sampleChat';
+import {useRef, useState, useCallback} from 'react';
+import {useChatStore} from '../context/chatStore';
+import moment from 'moment';
 
 const ChatScreen = () => {
   const flatListRef = useRef(null);
-  const [messages, setMessages] = useState(chatData);
+
+  const addMessage = useChatStore(state => state.addMessage);
+  const removeMessage = useChatStore(state => state.removeMessage);
+  const messages = useChatStore(state => state.messages);
+  const sortedMessages = useChatStore(state => state.sortedMessages);
+
   const [inputText, setInputText] = useState('');
 
-  const addMessage = () => {
+  const addMessages = useCallback(() => {
     if (inputText.trim() === '') return;
 
-    const newMessage = {
+    addMessage({
       id: (messages.length + 1).toString(),
       isSent: true,
       message: inputText,
-      time: new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      }),
-    };
-
-    setMessages(prevMessages => [newMessage, ...prevMessages]);
+      time: new Date().toISOString(), // Use ISO format for time
+    });
     setInputText('');
+  }, [inputText, addMessage, messages.length]);
 
-    flatListRef.current?.scrollToIndex({index: 0});
-  };
+  // Function to scroll to the bottom when a new message is added
+  const scrollToBottom = useCallback(() => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToIndex({index: 0});
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
+  }, [messages, scrollToBottom]);
+
   return (
     <View style={{flex: 1}}>
       <View
@@ -53,7 +65,7 @@ const ChatScreen = () => {
       <FlashList
         inverted
         ref={flatListRef}
-        data={messages}
+        data={sortedMessages}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
           <View
@@ -80,13 +92,15 @@ const ChatScreen = () => {
                   color: item.isSent ? 'white' : 'black',
                   opacity: 0.5,
                 }}>
-                {item.time}
+                {/* {moment(item.time).format('h:mm A')} */}
+                {new Date(item.time).getTime()}
               </Text>
             </View>
           </View>
         )}
         estimatedItemSize={80}
       />
+
       <View
         style={{
           paddingVertical: 8,
@@ -97,12 +111,6 @@ const ChatScreen = () => {
         <TextInput
           style={{
             width: '80%',
-            // flexDirection: 'row',
-            // alignItems: 'center',
-            // backgroundColor: '#fff',
-            // borderRadius: 10,
-            // paddingHorizontal: 10,
-            // paddingVertical: 20,
           }}
           placeholder="Type a message"
           value={inputText}
@@ -110,15 +118,12 @@ const ChatScreen = () => {
         />
 
         <Pressable
-          onPress={addMessage}
+          onPress={addMessages}
           style={{
             marginVertical: 'auto',
             marginLeft: 10,
             marginRight: 5,
             padding: 12,
-            // borderWidth: 4,
-            // borderRadius: 50,
-            // borderColor: '#5B8E1E',
           }}>
           <Icon size={30} name={'send'} color={'#5B8E1E'} />
         </Pressable>

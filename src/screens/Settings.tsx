@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -17,14 +17,13 @@ const SettingsScreen = () => {
           width: '100%',
           flexDirection: 'row',
           paddingHorizontal: 20,
+          paddingVertical: 15,
           alignItems: 'center',
-
-          paddingVertical: 50,
         }}>
         <View style={{position: 'relative', width: 50, height: 50}}>
-          <FontAwesome5
+          <MaterialIcons
             size={50}
-            name="user-circle"
+            name="support-agent"
             color="gray"
             style={{width: 50, height: 50, borderRadius: 25}}
           />
@@ -32,12 +31,12 @@ const SettingsScreen = () => {
           <View
             style={{
               position: 'absolute',
-              bottom: 0,
-              right: 0,
-              width: 20,
-              height: 20,
+              bottom: 2,
+              right: 2,
+              width: 16,
+              height: 16,
               backgroundColor: 'green',
-              borderRadius: 9,
+              borderRadius: 8,
               borderWidth: 2,
               borderColor: 'white',
             }}
@@ -48,12 +47,13 @@ const SettingsScreen = () => {
           style={{
             fontSize: 16,
             fontWeight: '500',
-            marginLeft: 10,
-            alignSelf: 'center',
+            marginLeft: 15,
+            color: '#333',
           }}>
-          Timmy
+          Agent_34
         </Text>
       </View>
+
       <View
         style={{
           width: '100%',

@@ -6,7 +6,7 @@ import {useNavigation, NavigationProp} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {StatusBar} from 'react-native';
 
-const ChatListScreen = () => {
+const Channels = () => {
   const chatData = [
     {
       id: '1',
@@ -135,4 +135,4 @@ const ChatListScreen = () => {
   );
 };
 
-export default ChatListScreen;
+export default Channels;

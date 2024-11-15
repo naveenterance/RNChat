@@ -4,9 +4,12 @@ import {Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsScreen from './Settings';
 import ChatListScreen from './ChatList';
+import Channels from './Channels';
+import SupportChat from './SupportChat';
+import Contacts from './Contacts';
 
-// Create a Bottom Tab Navigator
 const Tab = createBottomTabNavigator();
+11;
 
 const HomeTabs = () => {
   return (
@@ -37,13 +40,24 @@ const HomeTabs = () => {
         ),
       })}>
       <Tab.Screen
+        name="SupportChat"
+        component={SupportChat}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
         name="ChatList"
         component={ChatListScreen}
         options={{headerShown: false}}
       />
+
       <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
+        name="Channels"
+        component={Channels}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Contacts"
+        component={Contacts}
         options={{headerShown: false}}
       />
     </Tab.Navigator>
