@@ -92,8 +92,8 @@ const ChatScreen = () => {
                   color: item.isSent ? 'white' : 'black',
                   opacity: 0.5,
                 }}>
-                {/* {moment(item.time).format('h:mm A')} */}
-                {new Date(item.time).getTime()}
+                {moment(item.time).format('h:mm A')}
+                {/* {new Date(item.time).getTime()} */}
               </Text>
             </View>
           </View>

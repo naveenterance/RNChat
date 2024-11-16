@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  StyleSheet,
-  Alert,
-} from 'react-native';
+import {View, Text, TextInput, Pressable, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,7 +10,7 @@ const LoginScreen = () => {
   const navigation = useNavigation<NavigationProp<any>>();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>VNChat</Text>
+      <Text style={styles.title}>Aivana</Text>
 
       <View style={styles.inputContainer}>
         <Icon name="mail" size={20} color="gray" />

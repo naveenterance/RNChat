@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Text} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import SettingsScreen from './Settings';
 import ChatListScreen from './ChatList';
 import Channels from './Channels';
@@ -14,18 +15,23 @@ const Tab = createBottomTabNavigator();
 const HomeTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="ChatList"
+      initialRouteName="SupportChat"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'Settings') {
-            iconName = focused ? 'settings' : 'settings-outline';
+          if (route.name === 'SupportChat') {
+            return (
+              <MaterialIcons name={'support-agent'} size={size} color={color} />
+            );
           } else if (route.name === 'ChatList') {
-            iconName = focused ? 'chatbubble-sharp' : 'chatbubble-outline';
-          }
-
-          return <Icon name={iconName!} size={size} color={color} />;
+            return <MaterialIcons name={'chat'} size={size} color={color} />;
+          } else if (route.name == 'Channels') {
+            return <MaterialIcons name={'groups'} size={size} color={color} />;
+          } else
+            return (
+              <MaterialIcons name={'contacts'} size={size} color={color} />
+            );
         },
         tabBarActiveTintColor: '#5B8E1E',
         tabBarInactiveTintColor: 'gray',
@@ -34,7 +40,12 @@ const HomeTabs = () => {
         },
 
         tabBarLabel: ({focused, color}) => (
-          <Text style={{color: focused ? '#5B8E1E' : color, fontWeight: '600'}}>
+          <Text
+            style={{
+              color: focused ? '#5B8E1E' : color,
+              fontWeight: '600',
+              fontSize: 12,
+            }}>
             {route.name}
           </Text>
         ),

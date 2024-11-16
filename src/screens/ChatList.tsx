@@ -4,7 +4,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {FlashList} from '@shopify/flash-list';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {StatusBar} from 'react-native';
+import AdditionalMenu from './components/AdditionalMenu';
 
 const ChatListScreen = () => {
   const chatData = [
@@ -30,54 +30,67 @@ const ChatListScreen = () => {
       avatar: 'https://picsum.photos/200/300',
     },
   ];
+  const menuOptions = [
+    {
+      title: 'Settings',
+      handler: () => {
+        console.log('Option 1 selected');
+      },
+      hidden: false,
+    },
+  ];
 
   const navigation = useNavigation<NavigationProp<any>>();
 
   return (
     <View style={{flex: 1, paddingTop: 10}}>
+      {/* Header Section */}
       <View
         style={{
-          width: '100%',
           flexDirection: 'row',
-          paddingHorizontal: 20,
+          justifyContent: 'space-between',
           alignItems: 'center',
-          paddingTop: 10,
-          paddingBottom: 30,
+          paddingHorizontal: 20,
         }}>
-        <View style={{position: 'relative', width: 40, height: 40}}>
-          <MaterialIcons
-            size={40}
-            name="support-agent"
-            color="gray"
-            style={{width: 40, height: 40, borderRadius: 20}}
-          />
+        {/* Profile and name */}
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{position: 'relative', width: 40, height: 40}}>
+            <MaterialIcons
+              size={40}
+              name="support-agent"
+              color="gray"
+              style={{width: 40, height: 40, borderRadius: 20}}
+            />
+            <View
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                width: 14,
+                height: 14,
+                backgroundColor: 'green',
+                borderRadius: 6,
+                borderWidth: 2,
+                borderColor: 'white',
+              }}
+            />
+          </View>
 
-          <View
+          <Text
             style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-              width: 14,
-              height: 14,
-              backgroundColor: 'green',
-              borderRadius: 6,
-              borderWidth: 2,
-              borderColor: 'white',
-            }}
-          />
+              fontSize: 14,
+              fontWeight: '400',
+              marginLeft: 10,
+            }}>
+            Agent_34
+          </Text>
         </View>
-
-        <Text
-          style={{
-            fontSize: 14,
-            fontWeight: '400',
-            marginLeft: 10,
-            alignSelf: 'center',
-          }}>
-          Agent_34
-        </Text>
+        <View style={{position: 'absolute', right: 0}}>
+          <AdditionalMenu options={menuOptions} icon="dots-vertical" />
+        </View>
       </View>
 
+      {/* Chat List */}
       <FlashList
         data={chatData}
         renderItem={({item}) => (
@@ -90,10 +103,6 @@ const ChatListScreen = () => {
                 paddingVertical: 10,
               }}>
               <View style={{flexDirection: 'row'}}>
-                {/* <Image
-                  source={{uri: item.avatar}}
-                  style={{width: 50, height: 50, borderRadius: 25}}
-                /> */}
                 <EvilIcons
                   size={50}
                   name="user"
@@ -110,20 +119,7 @@ const ChatListScreen = () => {
                 </View>
               </View>
 
-              <View style={{}}>
-                <View
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    right: 0,
-                    width: 14,
-                    height: 14,
-                    backgroundColor: 'green',
-                    borderRadius: 6,
-                    borderWidth: 2,
-                    borderColor: 'white',
-                  }}
-                />
+              <View>
                 <Text style={{opacity: 0.5, fontSize: 12}}>{item.time}</Text>
               </View>
             </View>
