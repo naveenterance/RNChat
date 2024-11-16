@@ -3,6 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Menu} from 'react-native-paper';
 import MenuItemWithHideOption from './MenuItems';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation, NavigationProp} from '@react-navigation/native';
 
 const AdditionalMenu = (props: {options: any; icon?: any}) => {
   const styles = useStyles();
@@ -20,7 +21,7 @@ const AdditionalMenu = (props: {options: any; icon?: any}) => {
         <MaterialIcon
           name={props.icon ? props.icon : 'dots-vertical'}
           onPress={openMenu}
-          size={30}
+          size={25}
         />
       }>
       {props.options.map(item => {
@@ -45,12 +46,10 @@ const AdditionalMenu = (props: {options: any; icon?: any}) => {
 const useStyles = () =>
   StyleSheet.create({
     titleText: {
-      color: 'black', // Replace with desired text color
-      paddingRight: 40,
+      color: 'black',
     },
     additionalMenu: {
-      backgroundColor: '#fff', // Replace with desired background color
-      marginTop: 10,
+      backgroundColor: '#fff',
     },
     menuItem: {},
   });

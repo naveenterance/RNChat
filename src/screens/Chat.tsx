@@ -9,7 +9,7 @@ import {useChatStore} from '../context/chatStore';
 import moment from 'moment';
 
 const ChatScreen = () => {
-  const flatListRef = useRef(null);
+  const flashListRef = useRef<FlashList<any>>(null);
 
   const addMessage = useChatStore(state => state.addMessage);
   const removeMessage = useChatStore(state => state.removeMessage);
@@ -32,8 +32,8 @@ const ChatScreen = () => {
 
   // Function to scroll to the bottom when a new message is added
   const scrollToBottom = useCallback(() => {
-    if (flatListRef.current) {
-      flatListRef.current.scrollToIndex({index: 0});
+    if (flashListRef.current) {
+      flashListRef.current.scrollToIndex({index: 0});
     }
   }, []);
 
@@ -64,7 +64,7 @@ const ChatScreen = () => {
 
       <FlashList
         inverted
-        ref={flatListRef}
+        ref={flashListRef}
         data={sortedMessages}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (

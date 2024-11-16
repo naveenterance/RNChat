@@ -6,6 +6,9 @@ import {Provider} from 'react-native-paper';
 import HomeTabs from './src/screens/Home';
 import ChatScreen from './src/screens/Chat';
 import LoginScreen from './src/screens/Login';
+import SettingsScreen from './src/screens/Settings';
+
+import Header from './src/screens/components/Header';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,11 +25,16 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeTabs}
-            options={{headerShown: false}}
+            options={{header: Header}}
           />
           <Stack.Screen
             name="Chat"
             component={ChatScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

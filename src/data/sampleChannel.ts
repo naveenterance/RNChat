@@ -1,0 +1,58 @@
+export const channelData = [
+  {
+    id: '1',
+    name: 'General',
+    message: "Let's discuss project updates.",
+    time: '10:30 AM',
+    seen: false,
+  },
+  {
+    id: '2',
+    name: 'Development',
+    message: 'Looking for a backend developer.',
+    time: '09:45 AM',
+    seen: true,
+  },
+  {
+    id: '3',
+    name: 'Marketing',
+    message: 'New campaigns launching soon.',
+    time: '08:00 AM',
+    seen: false,
+  },
+  {
+    id: '4',
+    name: 'Design',
+    message: 'New UI design feedback.',
+    time: 'Yesterday',
+    seen: true,
+  },
+  {
+    id: '5',
+    name: 'Product',
+    message: 'Product release notes coming up.',
+    time: 'Yesterday',
+    seen: false,
+  },
+  {
+    id: '6',
+    name: 'HR',
+    message: 'Job openings available.',
+    time: '2 days ago',
+    seen: true,
+  },
+  {
+    id: '7',
+    name: 'Finance',
+    message: 'Quarterly financial meeting reminder.',
+    time: '2 days ago',
+    seen: false,
+  },
+  {
+    id: '8',
+    name: 'Support',
+    message: 'Customer issue resolutions in progress.',
+    time: '3 days ago',
+    seen: true,
+  },
+];
